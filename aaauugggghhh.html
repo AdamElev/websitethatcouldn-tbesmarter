@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Styles, we set this up for later. */
+        body {
+            background-color: white;
+        }
+
+        .center-box {
+            background-color: #F5F5DC;
+            width: 36%;
+            margin: 0 auto;
+            padding: 2.5%;
+            border-radius: 1%;
+            font-size: 1.2vw;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .center-box button {
+            background-color: #3298DA;
+            color: white;
+            height: 35%;
+            padding: 4%;
+            margin: 3%;
+            width: 25%;
+            font-size: 1.2vw;
+            transition: background-color 0.3s ease;
+        }
+
+        .center-box button:hover {
+            background-color: #6D3C67;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1%;
+        }
+
+        .custom-div {
+            background-color: #ccc;
+            padding: 2%;
+            text-align: center;
+        }
+
+        .space {
+            margin-top: 4%;
+        }
+
+        .custom-div img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .text-container { /* All in procentages, makes the website reactive and doesn't require more work later. */
+            display: none;
+            text-align: center;
+            color: yellow;
+        }
+    </style>
+
+    <script>
+        function displayTime() { // Putting this into it's own funtion was the best solution.
+            const today = new Date();
+            const options = {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZone: 'Europe/Stockholm',
+                timeZoneName: 'short'
+            };
+            const dateTime = today;
+
+            // Create a new <p> element for the timer
+            const timeElement = document.createElement('p');
+            timeElement.textContent = dateTime + ' ';
+            timeElement.style.fontSize = '1vw';
+
+            // Append the new <p> element to the time container
+            const timeContainer = document.querySelector('.time-container');
+            timeContainer.appendChild(timeElement);
+        }
+
+        window.addEventListener('load', function () {
+            // Get the button elements
+            var buttons = document.querySelectorAll('.center-box button');
+
+            // Button 1 click event
+            var button1 = document.querySelector('.center-box button:nth-child(1)');
+            button1.addEventListener('click', function () {
+                // Change background color on button 1 click
+                document.body.style.backgroundColor = '#ADD8E6';
+            });
+
+            var button4 = document.querySelector('.center-box button:nth-child(4)');
+            button4.addEventListener('click', function () {
+                // Create a new <h1> element
+                const headingElement = document.createElement('h1');
+                headingElement.textContent = 'Be the best version of you!';
+                headingElement.style.fontSize = '3vw';
+
+                // Insert the new <h1> element at the beginning of the time container
+                const timeContainer = document.querySelector('.time-container');
+                timeContainer.insertBefore(headingElement, timeContainer.firstChild);
+            });
+
+            var button7 = document.querySelector('.center-box button:nth-child(7)');
+            button7.addEventListener('click', function () {
+                // Call the displayTime function on button 7 click
+                displayTime();
+            });
+
+            var button2 = document.querySelector('.center-box button:nth-child(2)');
+            button2.addEventListener('click', function () {
+                var imageElement = document.querySelector('img');
+                // Change the image source
+                imageElement.src = 'https://openclipart.org/image/2000px/96109';
+            });
+
+            var button5 = document.querySelector('.center-box button:nth-child(5)');
+            button5.addEventListener('click', function () {
+                var imageElement = document.querySelector('img');
+                // Hide the image
+                imageElement.style.display = 'none';
+            });
+
+            var button8 = document.querySelector('.center-box button:nth-child(8)');
+            button8.addEventListener('click', function () {
+                var imageElement = document.querySelector('img');
+                // Display the image
+                imageElement.style.display = 'block';
+            });
+
+// Select the button element
+var button3 = document.querySelector('.center-box button:nth-child(3)');
+
+// Add a click event listener to the button
+button3.addEventListener('click', function () {
+    // Select the image, heading, and time container elements
+    var imageElement = document.querySelector('img');
+    var headingElement = document.querySelector('h1');
+    var timeContainer = document.querySelector('.time-container');
+
+    // Create a new <div> element for the custom layout
+    var divElement = document.createElement('div');
+    divElement.classList.add('custom-div'); // Add the 'custom-div' class
+
+    // Append the heading, time container, and image to the new <div> element
+    divElement.appendChild(headingElement);
+    divElement.appendChild(timeContainer);
+    divElement.appendChild(imageElement);
+
+    // Create a new container for the custom layout
+    var container = document.createElement('div');
+    container.classList.add('container', 'space'); // Add the 'container' and 'space' classes
+    container.appendChild(divElement);
+
+    // Append the new container after the existing container
+    var currentContainer = document.querySelector('.container');
+    currentContainer.parentNode.insertBefore(container, currentContainer.nextSibling);
+});
+
+
+            var button6 = document.querySelector('.center-box button:nth-child(6)');
+            button6.addEventListener('click', function () {
+                var container = document.querySelector('.space');
+                // Hide the header and its contents
+                container.style.display = 'none';
+            });
+
+            var button9 = document.querySelector('.center-box button:nth-child(9)');
+            button9.addEventListener('click', function () {
+                var container = document.querySelector('.space');
+                // Show the header and its contents
+                container.style.display = 'block';
+                var textContainer = document.querySelector('.text-container');
+                textContainer.style.display = 'block';
+            });
+        });
+    </script>
+</head>
+<body>
+    <br>
+    <div class="container">
+        <div class="time-container"></div>
+        <img src="https://openclipart.org/image/2000px/96079" width="10%" height="10%"> 
+    </div> 
+    <div class="center-box"> <!-- You said this was CSS was entierly acceptable yourself, so if you suddenly start having a problem with the fact that it says "Button 1,2,3" then I will be fairly mad, make sure to tell me as soon as possible thought. -->
+        <button>Button 1</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+        <button>Button 4</button>
+        <button>Button 5</button> 
+        <button>Button 6</button> 
+        <button>Button 7</button>
+        <button>Button 8</button>
+        <button>Button 9</button>
+    </div>
+    <div class="text-container">
+        <p>Thank you for using my website</p> 
+    </div>
+</body>
+</html>
